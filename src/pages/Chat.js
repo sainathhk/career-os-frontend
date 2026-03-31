@@ -1,6 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 
+
+import '../index.css';
+
 export default function Chat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");

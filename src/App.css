@@ -157,3 +157,127 @@ button:hover {
 .red {
   background: #ef4444;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Layout */
+.auth-container {
+  display: flex;
+  height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* LEFT */
+.auth-left {
+  width: 50%;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.overlay {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: rgba(255,255,255,0.1);
+  filter: blur(100px);
+  border-radius: 50%;
+}
+
+.left-content {
+  z-index: 2;
+  text-align: center;
+}
+
+.left-content h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.left-content p {
+  opacity: 0.8;
+}
+
+/* RIGHT */
+.auth-right {
+  width: 50%;
+  background: #0f0f0f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-box {
+  width: 300px;
+  color: white;
+}
+
+.form-box h2 {
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.form-box input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: white;
+  outline: none;
+}
+
+.form-box input:focus {
+  border-color: #6a11cb;
+}
+
+/* Button */
+.form-box button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #6a11cb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-box button:hover {
+  background: #7b2ff7;
+}
+
+/* Toggle */
+.toggle {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.toggle:hover {
+  color: white;
+}

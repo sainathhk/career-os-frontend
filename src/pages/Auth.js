@@ -1,16 +1,23 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+
+
+import '../App.css';
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleAuth = async () => {
     try {
+      setLoading(true);
+
       const url = isLogin
         ? "http://127.0.0.1:8000/auth/login"
         : "http://127.0.0.1:8000/auth/signup";
@@ -25,38 +32,59 @@ export default function Auth() {
       }
 
       localStorage.setItem("user_id", res.data.user_id);
-
       navigate("/chat");
     } catch (err) {
       console.error(err);
       alert("Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
-
   return (
-   <div className="container">
-  <div className="card" style={{ textAlign: "center", maxWidth: 400, margin: "auto" }}>
+  <div className="auth-container">
 
-    <h1>CareerOS 🚀</h1>
-    <h2>{isLogin ? "Sign In" : "Sign Up"}</h2>
+    {/* LEFT SIDE */}
+    <div className="auth-left">
+      <div className="overlay" />
+      <div className="left-content">
+        <h1>CareerOS 🚀</h1>
+        <p>Build your future with AI-powered tools.</p>
+      </div>
+    </div>
 
-    <input placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
-    <input type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)} />
+    {/* RIGHT SIDE */}
+    <div className="auth-right">
+      <div className="form-box">
 
-    <button style={{ width: "100%", marginTop: 15 }} onClick={handleAuth}>
-      {isLogin ? "Sign In" : "Sign Up"}
-    </button>
+        <h2>{isLogin ? "Welcome Back 👋" : "Create Account"}</h2>
+        <p className="subtitle">
+          {isLogin ? "Login to continue" : "Start your journey"}
+        </p>
 
-    <p
-      style={{ marginTop: 10, cursor: "pointer", color: "#a78bfa" }}
-      onClick={() => setIsLogin(!isLogin)}
-    >
-      {isLogin
-        ? "Don't have an account? Sign Up"
-        : "Already have an account? Sign In"}
-    </p>
+        <input
+          type="email"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button onClick={handleAuth} disabled={loading}>
+          {loading ? "Processing..." : isLogin ? "Sign In" : "Sign Up"}
+        </button>
+
+        <p className="toggle" onClick={() => setIsLogin(!isLogin)}>
+          {isLogin
+            ? "Don't have an account? Sign Up"
+            : "Already have an account? Sign In"}
+        </p>
+
+      </div>
+    </div>
   </div>
-</div>
-  );
+);
 }
